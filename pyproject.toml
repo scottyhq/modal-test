@@ -1,0 +1,29 @@
+[project]
+authors = [{name = "Scott Henderson", email = "3924836+scottyhq@users.noreply.github.com"}]
+dependencies = ["modal>=1.2.0,<2"]
+name = "modal-test"
+requires-python = ">= 3.11"
+version = "0.1.0"
+
+[build-system]
+build-backend = "hatchling.build"
+requires = ["hatchling"]
+
+[tool.pixi.workspace]
+channels = ["conda-forge"]
+platforms = ["osx-arm64", "linux-64"]
+
+[tool.pixi.pypi-dependencies]
+modal_test = { path = ".", editable = true }
+
+[tool.pixi.tasks]
+setup="python3 -m modal setup"
+test="modal run get_started.py"
+test-region="modal run specific_region.py"
+test-t4="modal run gpuT4.py"
+test-l40="modal run gpuL40.py"
+test-a100="modal run gpuA100.py"
+test-h100="modal run gpuH100.py"
+
+[tool.pixi.dependencies]
+python = "3.13.*"
